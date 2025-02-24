@@ -1,22 +1,27 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import FormComponent from './Components/FormComponent'
 import ViewDataComponent from './Components/ViewDataComponent'
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+
+const Navigation = () => {
+  const navigate = useNavigate()
+  return (
+    <nav className='w-[50%] mx-auto flex justify-between'>
+      <div className='p-2 border-r hover:bg-blue-600 hover:text-white' onClick={() => navigate('/')}>Home</div>
+      <div className='p-2 hover:bg-blue-600 hover:text-white' onClick={() => navigate('/view')}>View Stored Information</div>
+    </nav>
+  )
+}
 
 const App = () => {
   return (
-    <div>
-      <BrowserRouter>
-      <nav className='w-[50%] mx-auto flex justify-between'>
-        <a href='/' className=' p-2 border-r-[50%]   hover:bg-blue-600 hover:text-white'>Home</a>
-        <a href='/view' className=' p-2     hover:bg-blue-600 hover:text-white'>View Stored Information</a>
-      </nav>
+    <BrowserRouter>
+      <Navigation />  {/* Navigation now works because it's inside BrowserRouter */}
       <Routes>
-      <Route path='/' element={<FormComponent />}> </Route>
-      <Route path='/view' element={<ViewDataComponent />}> </Route>
+        <Route path='/' element={<FormComponent />} />
+        <Route path='/view' element={<ViewDataComponent />} />
       </Routes>
-      </BrowserRouter>
-    </div>
+    </BrowserRouter>
   )
 }
 
