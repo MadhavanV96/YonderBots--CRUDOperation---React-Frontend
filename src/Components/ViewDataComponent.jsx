@@ -11,7 +11,7 @@ const ViewDataComponent = () => {
   }, []);
 
   const fetchData = () => {
-    axios.get("http://localhost:5000/data")
+    axios.get("https://yonder-crud-operations-backend.onrender.com/data")
       .then(response => setData(response.data))
       .catch(error => console.error("Error fetching data:", error));
   };
@@ -31,7 +31,7 @@ const ViewDataComponent = () => {
     if (editedData.document) formData.append("document", editedData.document);
     formData.append("subjects", JSON.stringify(editedData.subjects));
 
-    axios.put(`http://localhost:5000/data/${id}`, formData, {
+    axios.put(`https://yonder-crud-operations-backend.onrender.com/data/${id}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     })
       .then(() => {
@@ -42,7 +42,7 @@ const ViewDataComponent = () => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/data/${id}`)
+    axios.delete(`https://yonder-crud-operations-backend.onrender.com/data/${id}`)
       .then(() => fetchData())
       .catch(error => console.error("Error deleting data:", error));
   };
@@ -92,8 +92,8 @@ const ViewDataComponent = () => {
                     ))}
                   </ul>
                   <p><strong>Image:</strong></p>
-                  <img src={`http://localhost:5000/${item.image}`} alt="Uploaded" className="w-32 h-32 object-cover rounded-md mt-2" />
-                  <p><strong>Document:</strong> <a href={`http://localhost:5000/${item.document}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Download</a></p>
+                  <img src={`https://yonder-crud-operations-backend.onrender.com/${item.image}`} alt="Uploaded" className="w-32 h-32 object-cover rounded-md mt-2" />
+                  <p><strong>Document:</strong> <a href={`https://yonder-crud-operations-backend.onrender.com/${item.document}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Download</a></p>
                   <button onClick={() => handleEdit(item)} className="mx-2 p-2 bg-blue-600 text-white">Edit</button>
                   <button onClick={() => handleDelete(item._id)} className="mx-2 p-2 bg-red-600 text-white">Delete</button>
                 </div>
